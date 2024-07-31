@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.yourorganization'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+        resources {
+            srcDirs = ['resources']
+        }
+    }
+}
+
+application {
+    mainClassName = 'server.ChatServer'
+}
+
+task runServer(type: JavaExec) {
+    main = 'server.ChatServer'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runClient(type: JavaExec) {
+    main = 'client.LoginFrame'
+    classpath = sourceSets.main.runtimeClasspath
+}
